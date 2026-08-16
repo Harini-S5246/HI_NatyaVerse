@@ -1,0 +1,345 @@
+{
+  "_metadata": {
+    "schema_version": "1.0",
+    "description": "Curated ground-truth knowledge base for HI-Natya Verse mudra grounding. Only entries with status 'curated' may ground a detection. All other entries are placeholders that must remain explicitly unresolved until verified research is added.",
+    "curation_status": "seed_only",
+    "curation_note": "Seed entries ('curated') contain ONLY the canonical namesake meaning of each mudra as documented in standard Bharatanatyam nomenclature (Abhinaya Darpanam tradition). No interpretive, narrative, or emotional claims are included at this stage. Usage contexts and Navarasa associations are intentionally left empty until verified per-mudra research is added.",
+    "missing_knowledge": "Usage contexts, narrative usage, and associated bhava are not yet curated for ANY mudra. Only 11 of 48 mudras have a curated namesake meaning; 37 remain pending_research."
+  },
+  "Pataka": {
+    "meaning": "Flag / banner",
+    "usage": [],
+    "associated_bhava": [],
+    "source": "Abhinaya Darpanam (canonical namesake)",
+    "status": "curated"
+  },
+  "Tripathaka": {
+    "meaning": "Three banners (flag with three strands)",
+    "usage": [],
+    "associated_bhava": [],
+    "source": "Abhinaya Darpanam (canonical namesake)",
+    "status": "curated"
+  },
+  "Katakamukha": {
+    "meaning": "Ring / opening of the wrist",
+    "usage": [],
+    "associated_bhava": [],
+    "source": "Abhinaya Darpanam (canonical namesake)",
+    "status": "curated"
+  },
+  "Mayura": {
+    "meaning": "Peacock",
+    "usage": [],
+    "associated_bhava": [],
+    "source": "Abhinaya Darpanam (canonical namesake)",
+    "status": "curated"
+  },
+  "Hamsasyam": {
+    "meaning": "Swan's beak",
+    "usage": [],
+    "associated_bhava": [],
+    "source": "Abhinaya Darpanam (canonical namesake)",
+    "status": "curated"
+  },
+  "Alapadmam": {
+    "meaning": "Full-blown lotus",
+    "usage": [],
+    "associated_bhava": [],
+    "source": "Abhinaya Darpanam (canonical namesake)",
+    "status": "curated"
+  },
+  "Shanka": {
+    "meaning": "Conch",
+    "usage": [],
+    "associated_bhava": [],
+    "source": "Abhinaya Darpanam (canonical namesake)",
+    "status": "curated"
+  },
+  "Chakra": {
+    "meaning": "Discus / wheel",
+    "usage": [],
+    "associated_bhava": [],
+    "source": "Abhinaya Darpanam (canonical namesake)",
+    "status": "curated"
+  },
+  "Suchi": {
+    "meaning": "Needle",
+    "usage": [],
+    "associated_bhava": [],
+    "source": "Abhinaya Darpanam (canonical namesake)",
+    "status": "curated"
+  },
+  "Anjali": {
+    "meaning": "Salutation (namaskara)",
+    "usage": [],
+    "associated_bhava": [],
+    "source": "Abhinaya Darpanam (canonical namesake)",
+    "status": "curated"
+  },
+  "Mushti": {
+    "meaning": "Fist",
+    "usage": [],
+    "associated_bhava": [],
+    "source": "Abhinaya Darpanam (canonical namesake)",
+    "status": "curated"
+  },
+  "Aralam": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Ardhachandran": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Ardhapathaka": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Berunda": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Bramaram": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Chandrakala": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Chaturam": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Garuda": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Hamsapaksha": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Kangulam": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Kapith": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Kapotham": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Karkatta": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Kartariswastika": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Katakavardhana": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Katrimukha": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Khatva": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Kilaka": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Kurma": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Matsya": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Mrigasirsha": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Mukulam": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Nagabandha": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Padmakosha": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Pasha": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Pushpaputa": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Sakata": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Samputa": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Sarpasirsha": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Shivalinga": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Shukatundam": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Sikharam": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Simhamukham": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Swastikam": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Tamarachudam": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Trishulam": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  },
+  "Varaha": {
+    "meaning": null,
+    "usage": [],
+    "associated_bhava": [],
+    "source": null,
+    "status": "pending_research"
+  }
+}

@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --parchment: 247 241 227; --parchment-50: 255 253 248; --parchment-200: 240 231 210; --parchment-300: 229 217 185;
+    --card: 255 253 248; --espresso: 43 35 32; --espresso-light: 92 81 72; --espresso-faint: 138 127 115; --line: 229 220 200;
+    --grounded: 63 125 88; --grounded-bg: 234 243 236; --unresolved: 165 115 31; --unresolved-bg: 251 241 223; --danger: 162 59 59; --danger-bg: 250 235 234;
+  }
+  [data-theme='dark'] {
+    --parchment: 27 27 29; --parchment-50: 35 33 34; --parchment-200: 48 43 42; --parchment-300: 75 65 59;
+    --card: 39 36 37; --espresso: 247 241 227; --espresso-light: 211 200 185; --espresso-faint: 169 153 139; --line: 82 70 62;
+    --grounded: 116 188 140; --grounded-bg: 31 62 43; --unresolved: 226 181 92; --unresolved-bg: 70 52 27; --danger: 240 138 138; --danger-bg: 77 37 39;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-parchment text-espresso font-body antialiased transition-colors duration-300;
+    font-feature-settings: 'liga' 1, 'kern' 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-espresso;
+  }
+
+  ::selection {
+    background-color: theme('colors.gold.100');
+    color: theme('colors.vermilion.700');
+  }
+
+  :focus-visible {
+    outline: 2px solid theme('colors.vermilion.500');
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Thin gold hairline used to divide major sections — a restrained nod to
+     temple parapet borders, used once per section rather than as decoration. */
+  .rule-gold {
+    @apply relative;
+  }
+  .rule-gold::after {
+    content: '';
+    @apply block h-px w-full;
+    background: linear-gradient(90deg, transparent, theme('colors.gold.300'), transparent);
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-widest2 text-vermilion-500;
+  }
+
+  .card-surface {
+    @apply rounded-card border border-line bg-card shadow-soft transition-colors duration-300;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm bg-vermilion-500 px-6 py-3
+      text-sm font-medium tracking-wide text-parchment-50 transition-colors duration-200
+      hover:bg-vermilion-600 focus-visible:outline-offset-4 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm border border-espresso/20 bg-transparent
+      px-6 py-3 text-sm font-medium tracking-wide text-espresso transition-colors duration-200
+      hover:border-espresso/40 hover:bg-espresso/5 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+}

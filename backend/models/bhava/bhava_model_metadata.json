@@ -1,0 +1,38 @@
+{
+    "model_name": "HI_Natya_Bhava_EfficientNetB0",
+    "architecture": "EfficientNetB0",
+    "dataset": "FER2013",
+    "classes": [
+        "Angry",
+        "Disgust",
+        "Fear",
+        "Happy",
+        "Sad",
+        "Surprise",
+        "Neutral"
+    ],
+    "input_size": [
+        224,
+        224,
+        3
+    ],
+    "training_strategy": {
+        "phase_1": "Frozen EfficientNetB0 + trainable classification head",
+        "phase_2": "Partial EfficientNetB0 fine-tuning",
+        "phase_3": "Moderated class-balanced fine-tuning"
+    },
+    "phase_3": {
+        "learning_rate": 5e-06,
+        "label_smoothing": 0.05,
+        "trainable_parameters": 1787367,
+        "trainable_backbone_layers": 19,
+        "batch_normalization": "frozen"
+    },
+    "results": {
+        "test_accuracy": 0.5783,
+        "macro_f1": 0.5372,
+        "weighted_f1": 0.567
+    },
+    "purpose": "Bhava foundation model for HI-Natya Verse",
+    "next_stage": "Bharatanatyam-specific multimodal adaptation"
+}

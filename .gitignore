@@ -1,0 +1,20 @@
+# Environment and local Python setup
+.env
+backend/.env
+backend/venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local trained models and generated/temporary media
+backend/models/**/*.keras
+backend/models/**/*.h5
+backend/models/**/*.onnx
+backend/uploads/*
+!backend/uploads/.gitkeep
+backend/results/*
+!backend/results/.gitkeep
+
+# Frontend output
+frontend/node_modules/
+frontend/dist/

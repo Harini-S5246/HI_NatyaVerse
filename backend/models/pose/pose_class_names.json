@@ -1,0 +1,32 @@
+{
+    "class_names": [
+        "Competition",
+        "Devi",
+        "Krishna",
+        "Padam",
+        "Shiva",
+        "Solo",
+        "Varnam",
+        "story based video"
+    ],
+    "label_to_index": {
+        "Competition": 0,
+        "Devi": 1,
+        "Krishna": 2,
+        "Padam": 3,
+        "Shiva": 4,
+        "Solo": 5,
+        "Varnam": 6,
+        "story based video": 7
+    },
+    "index_to_label": {
+        "0": "Competition",
+        "1": "Devi",
+        "2": "Krishna",
+        "3": "Padam",
+        "4": "Shiva",
+        "5": "Solo",
+        "6": "Varnam",
+        "7": "story based video"
+    }
+}
