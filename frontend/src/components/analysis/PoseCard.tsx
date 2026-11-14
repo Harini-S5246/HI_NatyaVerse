@@ -11,7 +11,7 @@ export default function PoseCard({ pose }: PoseCardProps) {
     return (
       <div className="card-surface p-6">
         <p className="eyebrow">Pose</p>
-        <p className="mt-4 text-sm text-espresso-faint">No pose analysis was reported by the backend.</p>
+        <p className="mt-4 text-sm text-espresso-faint">Not available in current analysis pipeline.</p>
       </div>
     )
   }

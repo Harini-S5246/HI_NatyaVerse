@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class MudraFramePrediction(BaseModel):
@@ -10,6 +10,12 @@ class MudraFramePrediction(BaseModel):
     grounded: bool = False
     meaning: str | None = None
     status: str = "unresolved"
+    knowledge_status: str | None = None
+    verification_status: str | None = None
+    claim_id: str | None = None
+    source_references: list[str] = Field(default_factory=list)
+    uncertainty_notes: list[str] = Field(default_factory=list)
+    uncertainty_reason: str | None = None
 
 
 class MudraEvent(BaseModel):
@@ -25,8 +31,14 @@ class MudraDetection(BaseModel):
     confidence: float | None = None
     grounded: bool = False
     status: str = "unresolved"
+    knowledge_status: str | None = None
     meaning: str | None = None
     timestamps: list[float] | None = None
+    verification_status: str | None = None
+    claim_id: str | None = None
+    source_references: list[str] = Field(default_factory=list)
+    uncertainty_notes: list[str] = Field(default_factory=list)
+    uncertainty_reason: str | None = None
 
 
 class MudraSummary(BaseModel):
@@ -46,3 +58,4 @@ class MudraClassificationResponse(BaseModel):
     unresolved_count: int = 0
     mudra: dict | None = None
     evidence: dict | None = None
+    temporal_sequence: dict | None = None

@@ -11,7 +11,7 @@ export default function InterpretationPanel({ evidence, result }: Interpretation
   return (
     <aside className="lg:sticky lg:top-24 lg:self-start">
       <div className="card-surface p-7">
-        <p className="eyebrow">Evidence</p>
+        <p className="eyebrow">Evidence supporting this story</p>
 
         {(result?.overall_evidence_strength !== undefined || result?.confidence?.score !== undefined) && (
           <div className="mt-4">
@@ -30,13 +30,36 @@ export default function InterpretationPanel({ evidence, result }: Interpretation
         {evidence.grounded.length > 0 && (
           <div className="mt-6 border-t border-line pt-5">
             <div className="mb-3 flex items-center justify-between">
-              <GroundingBadge status="grounded" size="sm" />
+              <span className="text-xs font-medium text-espresso-faint">Knowledge-base references</span>
               <span className="text-xs text-espresso-faint">{evidence.grounded.length}</span>
             </div>
             <ul className="space-y-1.5">
               {evidence.grounded.map((item) => (
                 <li key={item.id} className="text-sm text-espresso-light">
-                  {item.label}
+                  <span className="font-medium text-espresso">{item.label}</span>
+                  {['verified', 'partially_verified'].includes(item.verification_status ?? '') &&
+                  item.knowledge_status === item.verification_status &&
+                  item.claim_id &&
+                  item.source_references?.length &&
+                  item.source_references.every((reference) => reference.trim().length > 0) ? (
+                    <>
+                      {item.detail && <span> → {item.detail}</span>}
+                      <p className="text-xs text-espresso-faint">
+                        {item.verification_status?.replaceAll('_', ' ')} · Claim: {item.claim_id}
+                      </p>
+                      {item.source_references.map((reference) => (
+                        <p key={`${item.id}-${reference}`} className="text-xs text-espresso-faint">Source: {reference}</p>
+                      ))}
+                      {item.uncertainty_notes?.map((note) => (
+                        <p key={`${item.id}-${note}`} className="text-xs text-espresso-faint">Uncertainty: {note}</p>
+                      ))}
+                    </>
+                  ) : (
+                    <p className="text-xs text-espresso-faint">Meaning withheld: verification provenance unavailable.</p>
+                  )}
+                  {item.uncertainty_reason && (
+                    <p className="text-xs text-espresso-faint">{item.uncertainty_reason}</p>
+                  )}
                 </li>
               ))}
             </ul>

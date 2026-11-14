@@ -23,6 +23,7 @@ export default function Navbar({ language, onLanguageChange, theme, onThemeToggl
     { to: '/analyze', label: 'Analyze' },
     { to: lastAnalysisId ? `/analysis/${lastAnalysisId}` : '/analyze', label: 'Evidence' },
     { to: lastAnalysisId ? `/story/${lastAnalysisId}` : '/analyze', label: 'Story' },
+    { to: '/create-dance', label: 'Create Dance' },
   ]
 
   return (

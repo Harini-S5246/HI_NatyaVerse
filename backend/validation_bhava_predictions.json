@@ -1,0 +1,64 @@
+{
+  "model": "bhava",
+  "metadata": {
+    "model_accuracy": 0.5783,
+    "macro_f1": 0.5372,
+    "weighted_f1": 0.567
+  },
+  "synthetic_tests": {
+    "black_image": {
+      "predicted_label": "Angry",
+      "confidence": 0.6837651133537292,
+      "all_classes": {
+        "Angry": 0.683765,
+        "Disgust": 0.023687,
+        "Fear": 0.066173,
+        "Happy": 0.030248,
+        "Sad": 0.087532,
+        "Surprise": 0.049235,
+        "Neutral": 0.05936
+      }
+    },
+    "white_image": {
+      "predicted_label": "Angry",
+      "confidence": 0.4167162775993347,
+      "all_classes": {
+        "Angry": 0.416716,
+        "Disgust": 0.035215,
+        "Fear": 0.098146,
+        "Happy": 0.081039,
+        "Sad": 0.125127,
+        "Surprise": 0.137669,
+        "Neutral": 0.106087
+      }
+    },
+    "random_noise_seed42": {
+      "predicted_label": "Angry",
+      "confidence": 0.35502561926841736,
+      "all_classes": {
+        "Angry": 0.355026,
+        "Disgust": 0.309412,
+        "Fear": 0.046285,
+        "Happy": 0.082477,
+        "Sad": 0.119458,
+        "Surprise": 0.01747,
+        "Neutral": 0.069871
+      }
+    },
+    "random_noise_seed99": {
+      "predicted_label": "Angry",
+      "confidence": 0.36138832569122314,
+      "all_classes": {
+        "Angry": 0.361388,
+        "Disgust": 0.162216,
+        "Fear": 0.059479,
+        "Happy": 0.122305,
+        "Sad": 0.143892,
+        "Surprise": 0.049941,
+        "Neutral": 0.100779
+      }
+    }
+  },
+  "real_frame_samples": {},
+  "distribution": {}
+}

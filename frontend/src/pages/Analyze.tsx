@@ -9,7 +9,6 @@ import {
   classifyMudras,
   extractVideoFrames,
   fuse,
-  generateStory,
   uploadVideo,
   type VideoUploadResponse,
 } from '@/services/api'
@@ -21,7 +20,6 @@ interface AnalysisProgress {
   mudra?: boolean
   bhava?: boolean
   fusion?: boolean
-  story?: boolean
 }
 
 export default function Analyze() {
@@ -51,20 +49,16 @@ export default function Analyze() {
 
     try {
       // Step 1: Run Mudra classification
-      setAnalysisProgress((p) => ({ ...p, mudra: true }))
       await classifyMudras(videoId)
+      setAnalysisProgress((p) => ({ ...p, mudra: true }))
 
       // Step 2: Run Bhava classification
-      setAnalysisProgress((p) => ({ ...p, bhava: true }))
       await classifyBhavas(videoId)
+      setAnalysisProgress((p) => ({ ...p, bhava: true }))
 
       // Step 3: Run Fusion
-      setAnalysisProgress((p) => ({ ...p, fusion: true }))
       await fuse(videoId)
-
-      // Step 4: Generate Story
-      setAnalysisProgress((p) => ({ ...p, story: true }))
-      await generateStory(videoId, 'en')
+      setAnalysisProgress((p) => ({ ...p, fusion: true }))
 
       setStage('success')
       
@@ -182,14 +176,6 @@ export default function Analyze() {
                 <span className="text-base text-espresso">Fusion alignment</span>
               </div>
 
-              <div className="flex items-center gap-3">
-                {analysisProgress.story ? (
-                  <CheckCircle2 className="h-5 w-5 text-success shrink-0" aria-hidden="true" />
-                ) : (
-                  <div className="h-5 w-5 rounded-full border-2 border-espresso-faint/30 shrink-0" />
-                )}
-                <span className="text-base text-espresso">Story generation</span>
-              </div>
             </div>
           </div>
         )}

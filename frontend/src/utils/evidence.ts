@@ -21,12 +21,24 @@ export function deriveEvidence(result?: AnalysisResult | null): Evidence {
   const interpreted: EvidenceItem[] = []
 
   result.mudra?.detections?.forEach((mudra) => {
+    const hasSourceBackedMeaning =
+      ['verified', 'partially_verified'].includes(mudra.verification_status ?? '') &&
+      mudra.knowledge_status === mudra.verification_status &&
+      Boolean(mudra.claim_id) &&
+      Boolean(mudra.source_references?.length) &&
+      mudra.source_references?.every((reference) => reference.trim().length > 0)
     const item: EvidenceItem = {
       id: `mudra-${mudra.name}`,
       label: mudra.name,
       category: mudra.grounded ? 'grounded' : 'unresolved',
-      detail: mudra.grounded ? mudra.meaning ?? undefined : 'Meaning unavailable in current knowledge base',
+      detail: hasSourceBackedMeaning ? mudra.meaning ?? undefined : 'Source-backed meaning unavailable',
       confidence: mudra.confidence,
+      knowledge_status: mudra.knowledge_status,
+      verification_status: mudra.verification_status,
+      claim_id: mudra.claim_id,
+      source_references: mudra.source_references,
+      uncertainty_notes: mudra.uncertainty_notes,
+      uncertainty_reason: mudra.uncertainty_reason,
     }
     ;(mudra.grounded ? grounded : unresolved).push(item)
   })
@@ -34,7 +46,7 @@ export function deriveEvidence(result?: AnalysisResult | null): Evidence {
   if (result.bhava?.dominant_emotion) {
     detected.push({
       id: 'bhava-dominant',
-      label: `${result.bhava.dominant_emotion} bhava detected`,
+      label: `${result.bhava.dominant_emotion} facial expression detected`,
       category: 'detected',
       confidence: result.bhava.confidence ?? result.bhava.bhava_confidence,
     })

@@ -15,6 +15,8 @@ relationships between modalities and never generates narrative text.
 from __future__ import annotations
 
 from app.core.errors import AppError
+from app.services.mudra_bhava_alignment_service import align_mudra_bhava_sequences
+from app.services.knowledge_service import knowledge_service
 from app.services.result_service import (
     get_modality_result,
     save_modality_result,
@@ -91,6 +93,11 @@ def _build_timeline(
             "mudra": mudra_label,
             "mudra_confidence": mudra_conf,
             "mudra_grounded": bool(mudra_det.get("grounded", False)) if mudra_label else False,
+            "mudra_knowledge_status": mudra_det.get("knowledge_status") if mudra_label else None,
+            "mudra_verification_status": mudra_det.get("verification_status") if mudra_label else None,
+            "mudra_claim_id": mudra_det.get("claim_id") if mudra_label else None,
+            "mudra_source_references": mudra_det.get("source_references", []) if mudra_label else [],
+            "mudra_uncertainty_notes": mudra_det.get("uncertainty_notes", []) if mudra_label else [],
             "bhava": bhava_label,
             "bhava_confidence": bhava_conf,
         }
@@ -139,6 +146,30 @@ def _consolidate_evidence(mudra_result: dict, bhava_result: dict) -> dict[str, l
     return consolidated
 
 
+def _validate_result_identifiers(video_id: str, mudra_result: dict, bhava_result: dict) -> str:
+    """Validate modality ownership and return their shared analysis identifier."""
+    for modality, result in (("Mudra", mudra_result), ("Bhava", bhava_result)):
+        stored_video_id = result.get("video_id")
+        if stored_video_id != video_id:
+            raise AppError(
+                f"{modality} result belongs to video '{stored_video_id}', not requested video '{video_id}'.",
+                409,
+                "VIDEO_ID_MISMATCH",
+            )
+
+    # Modality services use the video ID as their analysis ID when no distinct
+    # analysis ID is available; preserve that established fallback.
+    mudra_analysis_id = mudra_result.get("analysis_id") or video_id
+    bhava_analysis_id = bhava_result.get("analysis_id") or video_id
+    if mudra_analysis_id != bhava_analysis_id:
+        raise AppError(
+            "Mudra and Bhava results belong to different analyses.",
+            409,
+            "ANALYSIS_ID_MISMATCH",
+        )
+    return mudra_analysis_id
+
+
 def fuse_video(video_id: str) -> dict:
     """Fuse the stored Mudra and Bhava results for one video into a canonical result."""
     try:
@@ -166,8 +197,27 @@ def fuse_video(video_id: str) -> dict:
     mudra_events = mudra_result.get("mudra_events", [])
     bhava_events = bhava_result.get("bhava_events", [])
     mudra_detections = _mudra_detection_lookup(mudra_result)
+    effective_analysis_id = _validate_result_identifiers(
+        video_id, mudra_result, bhava_result
+    )
 
     timeline = _build_timeline(mudra_events, bhava_events, mudra_detections)
+    alignment = align_mudra_bhava_sequences(
+        mudra_result,
+        bhava_result,
+        video_id=video_id,
+        analysis_id=effective_analysis_id,
+    )
+    try:
+        cultural_knowledge_evidence = knowledge_service.build_cultural_evidence(
+            mudra_result,
+            video_id=video_id,
+            analysis_id=effective_analysis_id,
+            alignment=alignment,
+        )
+    except ValueError as exc:
+        code = "VIDEO_ID_MISMATCH" if "video" in str(exc).lower() else "ANALYSIS_ID_MISMATCH"
+        raise AppError(str(exc), 409, code) from exc
 
     # Summary — averages come from each modality's own summary (no cross-claims).
     mudra_summary = mudra_result.get("summary", {})
@@ -185,12 +235,14 @@ def fuse_video(video_id: str) -> dict:
     }
 
     result = {
-        "analysis_id": video_id,
+        "analysis_id": effective_analysis_id,
         "video_id": video_id,
         "status": "completed",
         "timeline": timeline,
         "summary": fused_summary,
     }
+    result["mudra_bhava_alignment"] = alignment
+    result["cultural_knowledge_evidence"] = cultural_knowledge_evidence
 
     # Evidence consolidation (preserves grounding, unresolved, detected; no invention).
     result["evidence"] = _consolidate_evidence(mudra_result, bhava_result)

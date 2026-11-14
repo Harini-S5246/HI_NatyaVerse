@@ -34,6 +34,38 @@ def test_analyze_reports_missing_models_without_predictions():
     assert set(body["missing_models"]) == {"mudra", "bhava", "pose"}
 
 
+def test_analyze_success_response_contract_is_unchanged(tmp_path):
+    class StubModel:
+        def predict(self, frame):
+            assert frame is not None
+            return {"label": "Pataka", "confidence": 0.9}
+
+    async def fake_save_upload(upload):
+        assert upload.filename == "dance.mp4"
+        return tmp_path / "analysis-id.mp4", {
+            "duration_seconds": 1.0,
+            "original_filename": "dance.mp4",
+        }
+
+    with (
+        patch("app.api.routes.analysis.model_manager.missing_models", return_value=[]),
+        patch("app.api.routes.analysis.save_upload", side_effect=fake_save_upload),
+        patch(
+            "app.api.routes.analysis.iter_sampled_frames",
+            return_value=[(0.0, object())],
+        ),
+        patch("app.api.routes.analysis.model_manager.get", return_value=StubModel()),
+        patch("app.api.routes.analysis.save_result"),
+    ):
+        response = client.post(
+            "/api/analyze",
+            files={"video": ("dance.mp4", b"video-data", "video/mp4")},
+        )
+
+    assert response.status_code == 200
+    assert response.json() == {"analysis_id": "analysis-id", "status": "completed"}
+
+
 def test_upload_rejects_unsupported_type():
     response = client.post("/api/upload", files={"video": ("notes.txt", b"text", "text/plain")})
     assert response.status_code == 400

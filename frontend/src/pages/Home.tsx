@@ -50,6 +50,7 @@ export default function Home() {
             Analyze a Performance
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
+          <Link to="/demonstration/story" className="mt-4 inline-flex items-center gap-2 text-sm text-gold-200 underline underline-offset-4 hover:text-gold-100">View Story Demonstration <ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
         </div>
       </section>
     </>

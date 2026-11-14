@@ -1,0 +1,51 @@
+{
+  "model": "mudra",
+  "synthetic_tests": {
+    "black_image": {
+      "predicted_label": "Shivalinga",
+      "confidence": 0.07053079456090927,
+      "top5": {
+        "Shivalinga": 0.070531,
+        "Chakra": 0.061254,
+        "Sikharam": 0.058413,
+        "Anjali": 0.041737,
+        "Kurma": 0.034167
+      }
+    },
+    "white_image": {
+      "predicted_label": "Shivalinga",
+      "confidence": 0.0730677917599678,
+      "top5": {
+        "Shivalinga": 0.073068,
+        "Chakra": 0.071046,
+        "Pushpaputa": 0.065538,
+        "Sikharam": 0.060644,
+        "Matsya": 0.04245
+      }
+    },
+    "random_noise_seed42": {
+      "predicted_label": "Kapotham",
+      "confidence": 0.2145940363407135,
+      "top5": {
+        "Kapotham": 0.214594,
+        "Katrimukha": 0.147251,
+        "Katakavardhana": 0.100421,
+        "Mukulam": 0.062658,
+        "Shivalinga": 0.037724
+      }
+    },
+    "random_noise_seed99": {
+      "predicted_label": "Kapotham",
+      "confidence": 0.5469470024108887,
+      "top5": {
+        "Kapotham": 0.546947,
+        "Katrimukha": 0.148342,
+        "Mukulam": 0.038693,
+        "Samputa": 0.028254,
+        "Bramaram": 0.022895
+      }
+    }
+  },
+  "real_frame_samples": {},
+  "distribution": {}
+}

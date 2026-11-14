@@ -10,6 +10,7 @@
 export type EvidenceLevel = 'high' | 'moderate' | 'low' | 'unknown'
 
 export type GroundingStatus = 'grounded' | 'unresolved' | 'detected' | 'interpreted'
+export type KnowledgeVerificationStatus = 'verified' | 'partially_verified' | 'pending_research' | 'unverified' | string
 
 export type AnalysisStatusValue =
   | 'queued'
@@ -62,6 +63,12 @@ export interface MudraDetection {
   confidence?: number
   grounded: boolean
   status?: GroundingStatus
+  knowledge_status?: KnowledgeVerificationStatus | null
+  verification_status?: KnowledgeVerificationStatus | null
+  claim_id?: string | null
+  source_references?: string[]
+  uncertainty_notes?: string[]
+  uncertainty_reason?: string | null
   occurrence_count?: number
   timestamps?: number[]
   segment_start?: number
@@ -135,6 +142,12 @@ export interface EvidenceItem {
   category: GroundingStatus
   detail?: string
   confidence?: number
+  knowledge_status?: KnowledgeVerificationStatus | null
+  verification_status?: KnowledgeVerificationStatus | null
+  claim_id?: string | null
+  source_references?: string[]
+  uncertainty_notes?: string[]
+  uncertainty_reason?: string | null
 }
 
 export interface Evidence {
@@ -176,6 +189,53 @@ export interface AnalysisResult {
   confidence?: ConfidenceValue
 }
 
+/** The single source of truth for a completed video analysis. */
+export interface CanonicalAnalysis {
+  videoId: string
+  mudra: MudraClassificationResponse
+  bhava: BhavaClassificationResponse
+  fusion: FusionResult
+  audioEvidence: TechnicalAudioEvidence | null
+  performanceInterpretation: PerformanceInterpretationPackage | null
+  narrativeEvidenceReview: NarrativeEvidenceReviewSummary | null
+}
+
+/** Persisted technical artifact. It is never narrative evidence. */
+export interface TechnicalAudioEvidence {
+  analysis_id: string
+  video_id: string
+  source: { type: 'uploaded_video'; reference: string; version: string }
+  availability: { audio: boolean | null; reason: string | null }
+  technical_properties: {
+    duration: number | null
+    timeline_start_time: number | null
+    sample_rate: number | null
+    channels: number | null
+    codec: string | null
+    container: string | null
+  }
+  extraction: { status: 'pending' | 'extracted' | 'no_audio' | 'unavailable' | 'failed'; audio_reference: string | null }
+  production_eligibility: { status: 'technical_only'; narrative_eligible: false }
+}
+
+/** Persisted package that is the sole eligible input to live Story generation. */
+export interface PerformanceInterpretationPackage {
+  analysis_id: string
+  video_id: string
+  production_eligible: boolean
+  interpretation_status: 'available' | 'unavailable'
+  events: Array<{ event_id: string; type: string }>
+}
+
+/** Explicit human-review metadata; an empty record list means no submissions. */
+export interface NarrativeEvidenceReviewSummary {
+  analysis_id: string
+  video_id: string
+  records: Array<{ status: 'draft' | 'submitted' | 'verified' | 'rejected'; production_eligibility: { status: 'eligible' | 'ineligible' } }>
+  story_eligible: boolean
+  story_eligibility_reason: string
+}
+
 /* ------------------------------------------------------------------ */
 /* Story / interpretation                                               */
 /* ------------------------------------------------------------------ */
@@ -186,6 +246,11 @@ export interface StoryInterpretationItem {
   supporting_evidence: string[]
   confidence?: number | null
   status: string
+  knowledge_status?: KnowledgeVerificationStatus | null
+  verification_status?: KnowledgeVerificationStatus | null
+  claim_id?: string | null
+  source_references?: string[] | null
+  uncertainty_notes?: string[] | null
 }
 
 /**
@@ -194,7 +259,7 @@ export interface StoryInterpretationItem {
  */
 export interface StoryResponse {
   analysis_id: string
-  status: 'completed' | 'insufficient_grounded_evidence'
+  status: 'completed' | 'insufficient_grounded_evidence' | 'generation_failed'
   language: string
   title: string | null
   story: string | null
@@ -202,6 +267,35 @@ export interface StoryResponse {
   supporting_evidence: string[]
   unresolved_evidence: string[]
   message: string | null
+  provider?: string | null
+  model?: string | null
+  generation_method?: string | null
+  narrative_confidence?: string | null
+  evidence_coverage?: Record<string, number | boolean> | null
+}
+
+/** Validated Phase 6 generation contract returned by the Story endpoint. */
+export interface NarrativeGenerationResponse {
+  schema_version: '1.0.0'
+  analysis_id: string
+  video_id: string
+  mode: 'pure_dance' | 'narrative_dance' | 'evidence_based' | 'unknown'
+  status: 'generated' | 'unavailable' | 'blocked' | 'retryable'
+  language: string
+  presentation_version?: string | null
+  title: string | null
+  narrative: string | null
+  evidence_coverage: number
+  used_event_ids: string[]
+  limitations: string[]
+  provider: 'gemini' | 'ollama' | 'openai'
+  model: string
+  message: string | null
+  retry_after_seconds?: number | null
+  error_code?: string | null
+  package_eligible?: boolean
+  package_fingerprint?: string | null
+  package_evidence_coverage?: number
 }
 
 /**
@@ -237,6 +331,11 @@ export interface FusionTimelineRow {
   mudra?: string
   mudra_confidence?: number
   mudra_grounded?: boolean
+  mudra_knowledge_status?: KnowledgeVerificationStatus | null
+  mudra_verification_status?: KnowledgeVerificationStatus | null
+  mudra_claim_id?: string | null
+  mudra_source_references?: string[]
+  mudra_uncertainty_notes?: string[]
   bhava?: string
   bhava_confidence?: number
   [key: string]: unknown
@@ -268,11 +367,17 @@ export interface MudraFrame {
   frame_number: number
   timestamp: number
   filename: string
-  label: string
+  mudra: string
   confidence: number
   grounded: boolean
   status: GroundingStatus
   meaning?: string | null
+  knowledge_status?: KnowledgeVerificationStatus | null
+  verification_status?: KnowledgeVerificationStatus | null
+  claim_id?: string | null
+  source_references?: string[]
+  uncertainty_notes?: string[]
+  uncertainty_reason?: string | null
 }
 
 export interface MudraEvent {
@@ -308,7 +413,7 @@ export interface BhavaFrame {
   frame_number: number
   timestamp: number
   filename: string
-  label: string
+  bhava: string
   confidence: number
 }
 
@@ -321,7 +426,9 @@ export interface BhavaEvent {
 }
 
 export interface BhavaClassificationResponse {
-  event_id: string
+  analysis_id: string
+  video_id: string
+  status: string
   frame_count: number
   prediction_count: number
   bhava_events: BhavaEvent[]
@@ -337,6 +444,124 @@ export interface BhavaClassificationResponse {
     detections: Array<{ name: string; confidence: number }>
     segments: BhavaSegment[]
   }
+}
+
+/* ------------------------------------------------------------------ */
+/* Frame-level analysis                                                */
+/* ------------------------------------------------------------------ */
+
+/** Prediction for a single modality at a frame */
+export interface FramePrediction {
+  label: string | null
+  confidence: number | null
+  status: 'detected' | 'unresolved' | 'unavailable'
+  meaning?: string | null
+  explanation?: string | null
+  knowledge_status?: KnowledgeVerificationStatus | null
+  verification_status?: KnowledgeVerificationStatus | null
+  claim_id?: string | null
+  source_references?: string[]
+  uncertainty_notes?: string[]
+  uncertainty_reason?: string | null
+}
+
+/** Frame-level prediction combining all modalities */
+export interface FrameLevelAnalysis {
+  frame_number: number
+  timestamp: number
+  filename: string
+  frame_url?: string
+  mudra: FramePrediction
+  bhava: FramePrediction
+  pose: FramePrediction
+}
+
+export interface FrameAnalysisEvent {
+  modality: 'mudra' | 'bhava' | 'pose'
+  label: string | null
+  start_timestamp: number
+  end_timestamp: number
+  first_frame_number: number
+  last_frame_number: number
+  representative_frame: FrameLevelAnalysis
+  frame_count: number
+  average_confidence: number | null
+}
+
+/** Complete frame-level analysis response */
+export interface FrameLevelAnalysisResponse {
+  video_id: string
+  status: 'completed' | 'partial' | 'unavailable'
+  total_frames: number
+  frames: FrameLevelAnalysis[]
+  events?: {
+    mudra: FrameAnalysisEvent[]
+    bhava: FrameAnalysisEvent[]
+    pose: FrameAnalysisEvent[]
+  }
+  event_persistence_frames?: number
+  occurrences?: {
+    mudra: Record<string, number>
+    bhava: Record<string, number>
+  }
+  warnings?: {
+    mudra?: ModelRepetitionWarning | null
+    bhava?: ModelRepetitionWarning | null
+  }
+}
+
+export interface ModelRepetitionWarning {
+  type: 'repetitive_predictions'
+  message: string
+  dominant_label: string
+  dominant_frames: number
+  total_frames: number
+}
+
+/** Summary statistics for frame-level analysis */
+export interface FrameAnalysisSummary {
+  video_id: string
+  total_frames: number
+  mudra: {
+    unique_classes: number
+    unique_labels: string[]
+    confidence_range: {
+      min: number | null
+      max: number | null
+      mean: number | null
+    }
+    label_counts: Record<string, number>
+  }
+  bhava: {
+    unique_classes: number
+    unique_labels: string[]
+    confidence_range: {
+      min: number | null
+      max: number | null
+      mean: number | null
+    }
+    label_counts: Record<string, number>
+  }
+}
+
+/** Time-based segment where consecutive frames have same predictions */
+export interface TimeSegment {
+  mudra: string | null
+  mudra_confidence: number | null
+  bhava: string | null
+  bhava_confidence: number | null
+  start_timestamp: number
+  end_timestamp: number
+  first_frame_number: number
+  last_frame_number: number
+  frame_count: number
+}
+
+/** Segmented analysis grouping consecutive frames with same predictions */
+export interface TimeSegmentAnalysisResponse {
+  video_id: string
+  segment_count: number
+  segments: TimeSegment[]
 }
 
 /* ------------------------------------------------------------------ */

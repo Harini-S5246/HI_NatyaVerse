@@ -113,13 +113,15 @@ def test_build_evidence_grounds_known_and_unresolves_unknown(tmp_path, monkeypat
     assert evidence["grounded"][0]["label"] == "Pataka"
     assert evidence["grounded"][0]["detail"] == "Flag / banner"
     assert evidence["grounded"][0]["category"] == "grounded"
+    assert evidence["grounded"][0]["verification_status"] == "partially_verified"
+    assert evidence["grounded"][0]["source_references"] == ["Abhinaya Darpanam"]
 
     assert len(evidence["unresolved"]) == 1
     assert evidence["unresolved"][0]["label"] == "UnknownMudra"
     assert evidence["unresolved"][0]["category"] == "unresolved"
 
     assert len(evidence["detected"]) == 2
-    assert evidence["detected"][0]["label"] == "Happy bhava detected"
+    assert evidence["detected"][0]["label"] == "Happy facial expression detected"
     assert evidence["detected"][1]["label"] == "Devi pose detected"
 
     assert evidence["interpreted"] == []

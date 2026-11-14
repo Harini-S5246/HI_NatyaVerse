@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HI-Natya Verse Mudra Knowledge",
+  "type": "object",
+  "required": ["schema_version", "metadata", "entries"],
+  "properties": {
+    "schema_version": {"const": "2.0"},
+    "metadata": {
+      "type": "object",
+      "required": ["description", "curation_status", "curation_note"],
+      "properties": {
+        "description": {"type": "string"},
+        "curation_status": {"type": "string"},
+        "curation_note": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "mudra_id",
+          "canonical_name",
+          "normalized_label",
+          "approved_aliases",
+          "knowledge_status",
+          "meaning_claims",
+          "uncertainty_notes"
+        ],
+        "properties": {
+          "mudra_id": {"type": "string", "minLength": 1},
+          "canonical_name": {"type": "string", "minLength": 1},
+          "normalized_label": {"type": "string", "minLength": 1},
+          "approved_aliases": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1}
+          },
+          "knowledge_status": {
+            "enum": ["verified", "partially_verified", "pending_research", "unverified"]
+          },
+          "meaning_claims": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "claim_id",
+                "concept_id",
+                "descriptions",
+                "context_conditions",
+                "usage_conditions",
+                "verification_status",
+                "sources",
+                "uncertainty_notes"
+              ],
+              "properties": {
+                "claim_id": {"type": "string", "minLength": 1},
+                "concept_id": {"type": ["string", "null"]},
+                "descriptions": {
+                  "type": "object",
+                  "minProperties": 1,
+                  "additionalProperties": {"type": "string", "minLength": 1}
+                },
+                "context_conditions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["key", "value"],
+                    "properties": {
+                      "key": {"type": "string", "minLength": 1},
+                      "value": {"type": "string", "minLength": 1}
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "usage_conditions": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                },
+                "verification_status": {
+                  "enum": ["verified", "partially_verified", "pending_research", "unverified"]
+                },
+                "sources": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["reference", "bibliographic_details"],
+                    "properties": {
+                      "reference": {"type": "string", "minLength": 1},
+                      "bibliographic_details": {
+                        "type": ["object", "null"],
+                        "properties": {
+                          "author": {"type": ["string", "null"]},
+                          "edition": {"type": ["string", "null"]},
+                          "page": {"type": ["string", "null"]},
+                          "url": {"type": ["string", "null"]}
+                        },
+                        "additionalProperties": true
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "uncertainty_notes": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "uncertainty_notes": {
+            "type": "array",
+            "items": {"type": "string"}
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": true
+}

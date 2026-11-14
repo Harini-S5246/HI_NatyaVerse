@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hi-natyaverse.local/schemas/evidence/audio/1.0.0",
+  "title": "HI-Natya Verse Technical Audio Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "analysis_id", "video_id", "source", "availability", "technical_properties", "extraction", "segments", "production_eligibility", "errors"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "analysis_id": {"type": "string", "minLength": 1},
+    "video_id": {"type": "string", "minLength": 1},
+    "source": {"type": "object", "additionalProperties": false, "required": ["type", "reference", "version"], "properties": {"type": {"const": "uploaded_video"}, "reference": {"type": "string", "minLength": 1}, "version": {"type": "string", "minLength": 1}}},
+    "availability": {"type": "object", "additionalProperties": false, "required": ["audio", "reason"], "properties": {"audio": {"type": ["boolean", "null"]}, "reason": {"type": ["string", "null"]}}},
+    "technical_properties": {"type": "object", "additionalProperties": false, "required": ["duration", "timeline_start_time", "sample_rate", "channels", "codec", "container"], "properties": {"duration": {"type": ["number", "null"], "minimum": 0}, "timeline_start_time": {"type": ["number", "null"]}, "sample_rate": {"type": ["integer", "null"], "minimum": 1}, "channels": {"type": ["integer", "null"], "minimum": 1}, "codec": {"type": ["string", "null"]}, "container": {"type": ["string", "null"]}}},
+    "extraction": {"type": "object", "additionalProperties": false, "required": ["status", "extractor", "extractor_version", "extracted_at", "audio_reference"], "properties": {"status": {"enum": ["pending", "extracted", "no_audio", "unavailable", "failed"]}, "extractor": {"const": "ffmpeg"}, "extractor_version": {"type": "string", "minLength": 1}, "extracted_at": {"type": ["string", "null"]}, "audio_reference": {"type": ["string", "null"]}}},
+    "segments": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["evidence_id", "start_time", "end_time", "audio_reference", "provenance", "verification_status", "production_eligibility"], "properties": {"evidence_id": {"type": "string", "minLength": 1}, "start_time": {"type": "number"}, "end_time": {"type": ["number", "null"]}, "audio_reference": {"type": "string", "minLength": 1}, "provenance": {"type": "string", "minLength": 1}, "verification_status": {"const": "unknown"}, "production_eligibility": {"const": false}}}},
+    "production_eligibility": {"type": "object", "additionalProperties": false, "required": ["status", "narrative_eligible"], "properties": {"status": {"const": "technical_only"}, "narrative_eligible": {"const": false}}},
+    "errors": {"type": "array", "items": {"type": "string"}}
+  }
+}

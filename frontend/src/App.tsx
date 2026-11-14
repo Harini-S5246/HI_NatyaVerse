@@ -5,6 +5,8 @@ import Home from '@/pages/Home'
 import Analyze from '@/pages/Analyze'
 import Analysis from '@/pages/Analysis'
 import Story from '@/pages/Story'
+import DemonstrationStory from '@/pages/DemonstrationStory'
+import CreateDance from '@/pages/CreateDance'
 import NotFound from '@/pages/NotFound'
 import { useLanguage } from '@/hooks/useLanguage'
 import { useTheme } from '@/hooks/useTheme'
@@ -28,6 +30,11 @@ export default function App() {
             path="/story/:analysisId"
             element={<Story language={language} onLanguageChange={setLanguage} />}
           />
+          <Route
+            path="/create-dance"
+            element={<CreateDance language={language} />}
+          />
+          <Route path="/demonstration/story" element={<DemonstrationStory />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

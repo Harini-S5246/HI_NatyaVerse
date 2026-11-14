@@ -24,19 +24,33 @@ export default function MudraTable({ mudras }: MudraTableProps) {
           </tr>
         </thead>
         <tbody>
-          {mudras.map((mudra) => (
-            <tr key={mudra.name} className="border-b border-line last:border-0">
+          {mudras.map((mudra, index) => {
+            const verifiedClaim =
+              ['verified', 'partially_verified'].includes(mudra.verification_status ?? '') &&
+              mudra.knowledge_status === mudra.verification_status &&
+              Boolean(mudra.claim_id) &&
+              Boolean(mudra.source_references?.length) &&
+              Boolean(mudra.source_references?.every((reference) => reference.trim().length > 0))
+            return (
+            <tr key={`${mudra.name}-${mudra.segment_start ?? index}`} className="border-b border-line last:border-0">
               <td className="px-6 py-4 font-display text-base text-espresso">{mudra.name}</td>
               <td className="px-6 py-4">
-                <GroundingBadge status={mudra.grounded ? 'grounded' : 'unresolved'} size="sm" />
+                {verifiedClaim ? (
+                  <span className="text-xs text-espresso-faint">{mudra.verification_status?.replaceAll('_', ' ')}</span>
+                ) : <GroundingBadge status="unresolved" size="sm" />}
               </td>
               <td className="px-6 py-4 text-espresso-light">
-                {mudra.grounded ? (mudra.meaning ?? '—') : <span className="italic text-espresso-faint">Unresolved</span>}
+                {verifiedClaim ? (mudra.meaning ?? '—') : <span className="italic text-espresso-faint">Meaning withheld or unavailable</span>}
+                {verifiedClaim && mudra.claim_id && <p className="mt-1 text-xs text-espresso-faint">Claim: {mudra.claim_id}</p>}
+                {verifiedClaim && mudra.source_references?.map((reference) => <p key={reference} className="mt-1 text-xs text-espresso-faint">Source: {reference}</p>)}
+                {verifiedClaim && mudra.uncertainty_notes?.map((note) => <p key={note} className="mt-1 text-xs text-espresso-faint">Uncertainty: {note}</p>)}
+                {!verifiedClaim && mudra.uncertainty_reason && <p className="mt-1 text-xs text-espresso-faint">{mudra.uncertainty_reason}</p>}
               </td>
               <td className="px-6 py-4 text-espresso-light">{formatPercent(mudra.confidence) ?? '—'}</td>
               <td className="px-6 py-4 text-espresso-light">{mudra.occurrence_count ?? '—'}</td>
             </tr>
-          ))}
+            )
+          })}
         </tbody>
       </table>
     </div>

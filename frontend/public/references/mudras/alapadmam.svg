@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 270" role="img" aria-labelledby="title description">
+  <title id="title">Alapadmam illustrative hand reference</title>
+  <desc id="description">A single open hand with separated, gently curved fingers, drawn as an illustrative study.</desc>
+  <rect width="360" height="270" rx="12" fill="#fbf8f0"/>
+  <path d="M143 255 137 202 128 184 102 161Q93 153 99 145Q105 137 114 144L139 161 124 105Q121 94 130 91Q141 89 145 100L162 151 151 74Q149 62 159 60Q171 59 173 72L181 147 184 63Q184 50 195 50Q207 51 206 64L205 148 219 80Q222 68 233 71Q244 74 241 87L225 161 249 116Q255 105 265 111Q275 117 269 128L241 186 226 218 222 255Z" fill="#d89a74" stroke="#794d42" stroke-width="5" stroke-linejoin="round"/>
+  <path d="m160 117 12 41m31-47-1 48m32-45-14 47m-75 24 31 16m25-10 26-9" fill="none" stroke="#a96855" stroke-width="4" stroke-linecap="round"/>
+  <path d="M143 255h79" stroke="#794d42" stroke-width="5" stroke-linecap="round"/>
+  <text x="180" y="31" text-anchor="middle" fill="#794d42" font-family="sans-serif" font-size="16">Illustrative hand study</text>
+</svg>

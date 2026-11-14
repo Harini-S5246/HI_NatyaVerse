@@ -11,7 +11,7 @@ export default function AudioCard({ audio }: AudioCardProps) {
     return (
       <div className="card-surface p-6">
         <p className="eyebrow">Audio</p>
-        <p className="mt-4 text-sm text-espresso-faint">No audio analysis was reported by the backend.</p>
+        <p className="mt-4 text-sm text-espresso-faint">Not available in current analysis pipeline.</p>
       </div>
     )
   }

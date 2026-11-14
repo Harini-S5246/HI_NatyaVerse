@@ -216,7 +216,7 @@ def test_classification_evidence_detected_integration(tmp_path, monkeypatch):
 
     assert validated.evidence is not None
     assert any(
-        item["label"] == "Happy bhava detected" and item["category"] == "detected"
+        item["label"] == "Happy facial expression detected" and item["category"] == "detected"
         for item in validated.evidence["detected"]
     )
     # Bhava must never be grounded in the evidence via this module.
@@ -259,7 +259,7 @@ def test_bhava_endpoint_returns_validated_schema():
         "evidence": {
             "grounded": [],
             "detected": [
-                {"id": "bhava-dominant", "label": "Happy bhava detected", "category": "detected", "confidence": 0.9}
+                {"id": "bhava-dominant", "label": "Happy facial expression detected", "category": "detected", "confidence": 0.9}
             ],
             "unresolved": [],
             "interpreted": [],
@@ -276,6 +276,6 @@ def test_bhava_endpoint_returns_validated_schema():
     body = response.json()
     assert body["summary"]["dominant_bhava"] == "Happy"
     assert body["bhava"]["dominant_emotion"] == "Happy"
-    assert body["evidence"]["detected"][0]["label"] == "Happy bhava detected"
+    assert body["evidence"]["detected"][0]["label"] == "Happy facial expression detected"
     assert "bhava_events" in body
     assert "frames" in body

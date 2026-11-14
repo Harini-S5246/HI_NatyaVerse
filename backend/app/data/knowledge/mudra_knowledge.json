@@ -1,345 +1,664 @@
 {
-  "_metadata": {
+  "schema_version": "2.0",
+  "metadata": {
     "schema_version": "1.0",
     "description": "Curated ground-truth knowledge base for HI-Natya Verse mudra grounding. Only entries with status 'curated' may ground a detection. All other entries are placeholders that must remain explicitly unresolved until verified research is added.",
     "curation_status": "seed_only",
     "curation_note": "Seed entries ('curated') contain ONLY the canonical namesake meaning of each mudra as documented in standard Bharatanatyam nomenclature (Abhinaya Darpanam tradition). No interpretive, narrative, or emotional claims are included at this stage. Usage contexts and Navarasa associations are intentionally left empty until verified per-mudra research is added.",
     "missing_knowledge": "Usage contexts, narrative usage, and associated bhava are not yet curated for ANY mudra. Only 11 of 48 mudras have a curated namesake meaning; 37 remain pending_research."
   },
-  "Pataka": {
-    "meaning": "Flag / banner",
-    "usage": [],
-    "associated_bhava": [],
-    "source": "Abhinaya Darpanam (canonical namesake)",
-    "status": "curated"
-  },
-  "Tripathaka": {
-    "meaning": "Three banners (flag with three strands)",
-    "usage": [],
-    "associated_bhava": [],
-    "source": "Abhinaya Darpanam (canonical namesake)",
-    "status": "curated"
-  },
-  "Katakamukha": {
-    "meaning": "Ring / opening of the wrist",
-    "usage": [],
-    "associated_bhava": [],
-    "source": "Abhinaya Darpanam (canonical namesake)",
-    "status": "curated"
-  },
-  "Mayura": {
-    "meaning": "Peacock",
-    "usage": [],
-    "associated_bhava": [],
-    "source": "Abhinaya Darpanam (canonical namesake)",
-    "status": "curated"
-  },
-  "Hamsasyam": {
-    "meaning": "Swan's beak",
-    "usage": [],
-    "associated_bhava": [],
-    "source": "Abhinaya Darpanam (canonical namesake)",
-    "status": "curated"
-  },
-  "Alapadmam": {
-    "meaning": "Full-blown lotus",
-    "usage": [],
-    "associated_bhava": [],
-    "source": "Abhinaya Darpanam (canonical namesake)",
-    "status": "curated"
-  },
-  "Shanka": {
-    "meaning": "Conch",
-    "usage": [],
-    "associated_bhava": [],
-    "source": "Abhinaya Darpanam (canonical namesake)",
-    "status": "curated"
-  },
-  "Chakra": {
-    "meaning": "Discus / wheel",
-    "usage": [],
-    "associated_bhava": [],
-    "source": "Abhinaya Darpanam (canonical namesake)",
-    "status": "curated"
-  },
-  "Suchi": {
-    "meaning": "Needle",
-    "usage": [],
-    "associated_bhava": [],
-    "source": "Abhinaya Darpanam (canonical namesake)",
-    "status": "curated"
-  },
-  "Anjali": {
-    "meaning": "Salutation (namaskara)",
-    "usage": [],
-    "associated_bhava": [],
-    "source": "Abhinaya Darpanam (canonical namesake)",
-    "status": "curated"
-  },
-  "Mushti": {
-    "meaning": "Fist",
-    "usage": [],
-    "associated_bhava": [],
-    "source": "Abhinaya Darpanam (canonical namesake)",
-    "status": "curated"
-  },
-  "Aralam": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Ardhachandran": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Ardhapathaka": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Berunda": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Bramaram": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Chandrakala": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Chaturam": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Garuda": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Hamsapaksha": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Kangulam": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Kapith": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Kapotham": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Karkatta": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Kartariswastika": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Katakavardhana": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Katrimukha": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Khatva": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Kilaka": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Kurma": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Matsya": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Mrigasirsha": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Mukulam": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Nagabandha": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Padmakosha": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Pasha": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Pushpaputa": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Sakata": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Samputa": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Sarpasirsha": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Shivalinga": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Shukatundam": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Sikharam": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Simhamukham": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Swastikam": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Tamarachudam": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Trishulam": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  },
-  "Varaha": {
-    "meaning": null,
-    "usage": [],
-    "associated_bhava": [],
-    "source": null,
-    "status": "pending_research"
-  }
+  "entries": [
+    {
+      "mudra_id": "mudra-pataka",
+      "canonical_name": "Pataka",
+      "normalized_label": "pataka",
+      "approved_aliases": [],
+      "knowledge_status": "partially_verified",
+      "meaning_claims": [
+        {
+          "claim_id": "claim-pataka-namesake",
+          "concept_id": null,
+          "descriptions": {
+            "en": "Flag / banner"
+          },
+          "context_conditions": [],
+          "usage_conditions": [],
+          "verification_status": "partially_verified",
+          "sources": [
+            {
+              "reference": "Abhinaya Darpanam (canonical namesake)",
+              "bibliographic_details": null
+            }
+          ],
+          "uncertainty_notes": [
+            "Legacy project-curated namesake only; source details are incomplete."
+          ]
+        }
+      ],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-tripathaka",
+      "canonical_name": "Tripathaka",
+      "normalized_label": "tripathaka",
+      "approved_aliases": [],
+      "knowledge_status": "partially_verified",
+      "meaning_claims": [
+        {
+          "claim_id": "claim-tripathaka-namesake",
+          "concept_id": null,
+          "descriptions": {
+            "en": "Three banners (flag with three strands)"
+          },
+          "context_conditions": [],
+          "usage_conditions": [],
+          "verification_status": "partially_verified",
+          "sources": [
+            {
+              "reference": "Abhinaya Darpanam (canonical namesake)",
+              "bibliographic_details": null
+            }
+          ],
+          "uncertainty_notes": [
+            "Legacy project-curated namesake only; source details are incomplete."
+          ]
+        }
+      ],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-katakamukha",
+      "canonical_name": "Katakamukha",
+      "normalized_label": "katakamukha",
+      "approved_aliases": [],
+      "knowledge_status": "partially_verified",
+      "meaning_claims": [
+        {
+          "claim_id": "claim-katakamukha-namesake",
+          "concept_id": null,
+          "descriptions": {
+            "en": "Ring / opening of the wrist"
+          },
+          "context_conditions": [],
+          "usage_conditions": [],
+          "verification_status": "partially_verified",
+          "sources": [
+            {
+              "reference": "Abhinaya Darpanam (canonical namesake)",
+              "bibliographic_details": null
+            }
+          ],
+          "uncertainty_notes": [
+            "Legacy project-curated namesake only; source details are incomplete."
+          ]
+        }
+      ],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-mayura",
+      "canonical_name": "Mayura",
+      "normalized_label": "mayura",
+      "approved_aliases": [],
+      "knowledge_status": "partially_verified",
+      "meaning_claims": [
+        {
+          "claim_id": "claim-mayura-namesake",
+          "concept_id": null,
+          "descriptions": {
+            "en": "Peacock"
+          },
+          "context_conditions": [],
+          "usage_conditions": [],
+          "verification_status": "partially_verified",
+          "sources": [
+            {
+              "reference": "Abhinaya Darpanam (canonical namesake)",
+              "bibliographic_details": null
+            }
+          ],
+          "uncertainty_notes": [
+            "Legacy project-curated namesake only; source details are incomplete."
+          ]
+        }
+      ],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-hamsasyam",
+      "canonical_name": "Hamsasyam",
+      "normalized_label": "hamsasyam",
+      "approved_aliases": [],
+      "knowledge_status": "partially_verified",
+      "meaning_claims": [
+        {
+          "claim_id": "claim-hamsasyam-namesake",
+          "concept_id": null,
+          "descriptions": {
+            "en": "Swan's beak"
+          },
+          "context_conditions": [],
+          "usage_conditions": [],
+          "verification_status": "partially_verified",
+          "sources": [
+            {
+              "reference": "Abhinaya Darpanam (canonical namesake)",
+              "bibliographic_details": null
+            }
+          ],
+          "uncertainty_notes": [
+            "Legacy project-curated namesake only; source details are incomplete."
+          ]
+        }
+      ],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-alapadmam",
+      "canonical_name": "Alapadmam",
+      "normalized_label": "alapadmam",
+      "approved_aliases": [],
+      "knowledge_status": "partially_verified",
+      "meaning_claims": [
+        {
+          "claim_id": "claim-alapadmam-namesake",
+          "concept_id": null,
+          "descriptions": {
+            "en": "Full-blown lotus"
+          },
+          "context_conditions": [],
+          "usage_conditions": [],
+          "verification_status": "partially_verified",
+          "sources": [
+            {
+              "reference": "Abhinaya Darpanam (canonical namesake)",
+              "bibliographic_details": null
+            }
+          ],
+          "uncertainty_notes": [
+            "Legacy project-curated namesake only; source details are incomplete."
+          ]
+        }
+      ],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-shanka",
+      "canonical_name": "Shanka",
+      "normalized_label": "shanka",
+      "approved_aliases": [],
+      "knowledge_status": "partially_verified",
+      "meaning_claims": [
+        {
+          "claim_id": "claim-shanka-namesake",
+          "concept_id": null,
+          "descriptions": {
+            "en": "Conch"
+          },
+          "context_conditions": [],
+          "usage_conditions": [],
+          "verification_status": "partially_verified",
+          "sources": [
+            {
+              "reference": "Abhinaya Darpanam (canonical namesake)",
+              "bibliographic_details": null
+            }
+          ],
+          "uncertainty_notes": [
+            "Legacy project-curated namesake only; source details are incomplete."
+          ]
+        }
+      ],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-chakra",
+      "canonical_name": "Chakra",
+      "normalized_label": "chakra",
+      "approved_aliases": [],
+      "knowledge_status": "partially_verified",
+      "meaning_claims": [
+        {
+          "claim_id": "claim-chakra-namesake",
+          "concept_id": null,
+          "descriptions": {
+            "en": "Discus / wheel"
+          },
+          "context_conditions": [],
+          "usage_conditions": [],
+          "verification_status": "partially_verified",
+          "sources": [
+            {
+              "reference": "Abhinaya Darpanam (canonical namesake)",
+              "bibliographic_details": null
+            }
+          ],
+          "uncertainty_notes": [
+            "Legacy project-curated namesake only; source details are incomplete."
+          ]
+        }
+      ],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-suchi",
+      "canonical_name": "Suchi",
+      "normalized_label": "suchi",
+      "approved_aliases": [],
+      "knowledge_status": "partially_verified",
+      "meaning_claims": [
+        {
+          "claim_id": "claim-suchi-namesake",
+          "concept_id": null,
+          "descriptions": {
+            "en": "Needle"
+          },
+          "context_conditions": [],
+          "usage_conditions": [],
+          "verification_status": "partially_verified",
+          "sources": [
+            {
+              "reference": "Abhinaya Darpanam (canonical namesake)",
+              "bibliographic_details": null
+            }
+          ],
+          "uncertainty_notes": [
+            "Legacy project-curated namesake only; source details are incomplete."
+          ]
+        }
+      ],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-anjali",
+      "canonical_name": "Anjali",
+      "normalized_label": "anjali",
+      "approved_aliases": [],
+      "knowledge_status": "partially_verified",
+      "meaning_claims": [
+        {
+          "claim_id": "claim-anjali-namesake",
+          "concept_id": null,
+          "descriptions": {
+            "en": "Salutation (namaskara)"
+          },
+          "context_conditions": [],
+          "usage_conditions": [],
+          "verification_status": "partially_verified",
+          "sources": [
+            {
+              "reference": "Abhinaya Darpanam (canonical namesake)",
+              "bibliographic_details": null
+            }
+          ],
+          "uncertainty_notes": [
+            "Legacy project-curated namesake only; source details are incomplete."
+          ]
+        }
+      ],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-mushti",
+      "canonical_name": "Mushti",
+      "normalized_label": "mushti",
+      "approved_aliases": [],
+      "knowledge_status": "partially_verified",
+      "meaning_claims": [
+        {
+          "claim_id": "claim-mushti-namesake",
+          "concept_id": null,
+          "descriptions": {
+            "en": "Fist"
+          },
+          "context_conditions": [],
+          "usage_conditions": [],
+          "verification_status": "partially_verified",
+          "sources": [
+            {
+              "reference": "Abhinaya Darpanam (canonical namesake)",
+              "bibliographic_details": null
+            }
+          ],
+          "uncertainty_notes": [
+            "Legacy project-curated namesake only; source details are incomplete."
+          ]
+        }
+      ],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-aralam",
+      "canonical_name": "Aralam",
+      "normalized_label": "aralam",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-ardhachandran",
+      "canonical_name": "Ardhachandran",
+      "normalized_label": "ardhachandran",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-ardhapathaka",
+      "canonical_name": "Ardhapathaka",
+      "normalized_label": "ardhapathaka",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-berunda",
+      "canonical_name": "Berunda",
+      "normalized_label": "berunda",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-bramaram",
+      "canonical_name": "Bramaram",
+      "normalized_label": "bramaram",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-chandrakala",
+      "canonical_name": "Chandrakala",
+      "normalized_label": "chandrakala",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-chaturam",
+      "canonical_name": "Chaturam",
+      "normalized_label": "chaturam",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-garuda",
+      "canonical_name": "Garuda",
+      "normalized_label": "garuda",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-hamsapaksha",
+      "canonical_name": "Hamsapaksha",
+      "normalized_label": "hamsapaksha",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-kangulam",
+      "canonical_name": "Kangulam",
+      "normalized_label": "kangulam",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-kapith",
+      "canonical_name": "Kapith",
+      "normalized_label": "kapith",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-kapotham",
+      "canonical_name": "Kapotham",
+      "normalized_label": "kapotham",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-karkatta",
+      "canonical_name": "Karkatta",
+      "normalized_label": "karkatta",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-kartariswastika",
+      "canonical_name": "Kartariswastika",
+      "normalized_label": "kartariswastika",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-katakavardhana",
+      "canonical_name": "Katakavardhana",
+      "normalized_label": "katakavardhana",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-katrimukha",
+      "canonical_name": "Katrimukha",
+      "normalized_label": "katrimukha",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-khatva",
+      "canonical_name": "Khatva",
+      "normalized_label": "khatva",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-kilaka",
+      "canonical_name": "Kilaka",
+      "normalized_label": "kilaka",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-kurma",
+      "canonical_name": "Kurma",
+      "normalized_label": "kurma",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-matsya",
+      "canonical_name": "Matsya",
+      "normalized_label": "matsya",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-mrigasirsha",
+      "canonical_name": "Mrigasirsha",
+      "normalized_label": "mrigasirsha",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-mukulam",
+      "canonical_name": "Mukulam",
+      "normalized_label": "mukulam",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-nagabandha",
+      "canonical_name": "Nagabandha",
+      "normalized_label": "nagabandha",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-padmakosha",
+      "canonical_name": "Padmakosha",
+      "normalized_label": "padmakosha",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-pasha",
+      "canonical_name": "Pasha",
+      "normalized_label": "pasha",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-pushpaputa",
+      "canonical_name": "Pushpaputa",
+      "normalized_label": "pushpaputa",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-sakata",
+      "canonical_name": "Sakata",
+      "normalized_label": "sakata",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-samputa",
+      "canonical_name": "Samputa",
+      "normalized_label": "samputa",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-sarpasirsha",
+      "canonical_name": "Sarpasirsha",
+      "normalized_label": "sarpasirsha",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-shivalinga",
+      "canonical_name": "Shivalinga",
+      "normalized_label": "shivalinga",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-shukatundam",
+      "canonical_name": "Shukatundam",
+      "normalized_label": "shukatundam",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-sikharam",
+      "canonical_name": "Sikharam",
+      "normalized_label": "sikharam",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-simhamukham",
+      "canonical_name": "Simhamukham",
+      "normalized_label": "simhamukham",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-swastikam",
+      "canonical_name": "Swastikam",
+      "normalized_label": "swastikam",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-tamarachudam",
+      "canonical_name": "Tamarachudam",
+      "normalized_label": "tamarachudam",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-trishulam",
+      "canonical_name": "Trishulam",
+      "normalized_label": "trishulam",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    },
+    {
+      "mudra_id": "mudra-varaha",
+      "canonical_name": "Varaha",
+      "normalized_label": "varaha",
+      "approved_aliases": [],
+      "knowledge_status": "pending_research",
+      "meaning_claims": [],
+      "uncertainty_notes": []
+    }
+  ]
 }

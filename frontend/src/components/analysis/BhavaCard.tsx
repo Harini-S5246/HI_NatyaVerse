@@ -10,7 +10,7 @@ export default function BhavaCard({ bhava }: BhavaCardProps) {
   if (!bhava || (!bhava.dominant_emotion && (!bhava.segments || bhava.segments.length === 0))) {
     return (
       <div className="card-surface p-6">
-        <p className="eyebrow">Bhava</p>
+        <p className="eyebrow">Facial-expression observations</p>
         <p className="mt-4 text-sm text-espresso-faint">No bhava analysis was reported by the backend.</p>
       </div>
     )
@@ -19,14 +19,14 @@ export default function BhavaCard({ bhava }: BhavaCardProps) {
   return (
     <div className="card-surface p-6">
       <div className="flex items-center justify-between">
-        <p className="eyebrow">Bhava</p>
+        <p className="eyebrow">Facial-expression observations</p>
         <Smile className="h-4 w-4 text-vermilion-500" aria-hidden="true" />
       </div>
 
       {bhava.dominant_emotion && (
         <>
           <p className="mt-3 font-display text-3xl text-espresso">{bhava.dominant_emotion}</p>
-          <p className="mt-1 text-xs text-espresso-faint">Dominant emotional state detected</p>
+          <p className="mt-1 text-xs text-espresso-faint">Most common predicted emotion label</p>
           <p className="mt-3 text-sm text-espresso-light">
             {formatPercent(bhava.confidence ?? bhava.bhava_confidence) ?? 'Confidence pending'}
           </p>

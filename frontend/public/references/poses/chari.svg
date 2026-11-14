@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 270" role="img" aria-labelledby="title description">
+  <title id="title">Chari illustrative full-body movement concept</title>
+  <desc id="description">A complete stylized dancer figure in a traveling step, with head, torso, arms, and both legs visible.</desc>
+  <rect width="360" height="270" rx="12" fill="#fbf8f0"/>
+  <g fill="none" stroke="#794d42" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="181" cy="38" r="20" fill="#e8b28e" stroke-width="5"/>
+    <path d="M181 59v67M181 76 129 98 91 80M181 76l48-33 31 6M181 126l-38 50-38 50M181 126l42 35 48 27"/>
+    <path d="m146 175-20 11m97-25 16-13"/>
+  </g>
+  <path d="M155 65h52l-7 70-18 17-22-17z" fill="#b65c4d" opacity=".8"/>
+  <path d="M94 229h-24m144 0h32" stroke="#a96855" stroke-width="6" stroke-linecap="round"/>
+  <text x="180" y="258" text-anchor="middle" fill="#794d42" font-family="sans-serif" font-size="14">Illustrative travel concept · not a pose prescription</text>
+</svg>

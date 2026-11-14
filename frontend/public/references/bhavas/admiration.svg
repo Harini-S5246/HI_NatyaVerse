@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 270" role="img" aria-labelledby="title description">
+  <title id="title">Admiration illustrative facial expression</title>
+  <desc id="description">A close-up face with gently raised brows and a soft, attentive smile.</desc>
+  <rect width="360" height="270" rx="12" fill="#fbf8f0"/>
+  <ellipse cx="180" cy="145" rx="82" ry="105" fill="#e8b28e" stroke="#794d42" stroke-width="4"/>
+  <path d="M127 112q19-15 38 0m30 0q19-15 38 0" fill="none" stroke="#794d42" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="146" cy="132" rx="7" ry="11" fill="#46332e"/><ellipse cx="214" cy="132" rx="7" ry="11" fill="#46332e"/>
+  <path d="M180 138q-7 24-2 28l9 1" fill="none" stroke="#a96855" stroke-width="4" stroke-linecap="round"/>
+  <path d="M151 184q29 23 58 0" fill="none" stroke="#8f4844" stroke-width="5" stroke-linecap="round"/>
+  <text x="180" y="24" text-anchor="middle" fill="#794d42" font-family="sans-serif" font-size="16">Illustrative expression study</text>
+</svg>

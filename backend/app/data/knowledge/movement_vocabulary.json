@@ -1,0 +1,85 @@
+{
+  "_metadata": {
+    "status": "review_required",
+    "message": "Source-backed movement concepts are available; specific Adavu mappings are not established.",
+    "source": "Mauritius Institute of Education; Kalaprangan Trust; Eambalam",
+    "source_reference": "Bharata Natyam Grade 9, Chapter 5 — Adavus; Bharatanatyam Praveshika Purna, Adavu section; The Structure of Bharathanatyam, Adavu section",
+    "supported_actions": [],
+    "supported_intents": ["travel", "turn"],
+    "directions": ["forward", "rotate"]
+  },
+  "entries": [
+    {
+      "movement_name": "Adavu",
+      "movement_type": "adavu",
+      "aliases": ["Adavus"],
+      "components": ["feet", "legs", "torso", "arms", "hands"],
+      "directions": [],
+      "supported_intents": [],
+      "mapping_status": "review_required",
+      "source": "Mauritius Institute of Education, Bharata Natyam Grade 9",
+      "source_reference": "Chapter 5 — Adavus",
+      "notes": "Describes Adavus as basic units of Nritta with prescribed movement sequences. This category is not a direct translation of story actions; terminology and classification may vary by lineage."
+    },
+    {
+      "movement_name": "Sthanaka",
+      "movement_type": "movement_concept",
+      "aliases": [],
+      "components": ["feet", "legs", "torso"],
+      "directions": [],
+      "supported_intents": [],
+      "mapping_status": "review_required",
+      "source": "Eambalam, The Structure of Bharathanatyam",
+      "source_reference": "Section 'Adavu' — Sthanaka as a movement component",
+      "notes": "Structural movement concept only; no story-action mapping or specific Adavu is asserted."
+    },
+    {
+      "movement_name": "Chari",
+      "movement_type": "movement_concept",
+      "aliases": [],
+      "components": ["feet", "legs", "torso"],
+      "directions": ["forward", "sideways", "circular", "return"],
+      "supported_intents": ["travel"],
+      "mapping_status": "supported_concept",
+      "source": "Eambalam, The Structure of Bharathanatyam",
+      "source_reference": "Section 'Adavu' — Chari and coordinated movement components",
+      "notes": "A travelling movement concept. A forward-entry intent may use Chari as a movement-concept candidate only; this does not identify a specific Adavu or claim that Chari means 'enter'. Terminology may vary by lineage."
+    },
+    {
+      "movement_name": "Bhramari",
+      "movement_type": "movement_concept",
+      "aliases": [],
+      "components": ["feet", "legs", "torso", "arms"],
+      "directions": ["rotate"],
+      "supported_intents": ["turn"],
+      "mapping_status": "supported_concept",
+      "source": "Kalaprangan Trust, Bharatanatyam Praveshika Purna",
+      "source_reference": "Adavu section — Bhramari as a turning/rotational movement concept",
+      "notes": "A turning/rotational movement concept, not a specific Adavu assignment or a universal translation of the story verb 'turn'. Terminology may vary by lineage."
+    },
+    {
+      "movement_name": "Nritta Hasta",
+      "movement_type": "movement_concept",
+      "aliases": [],
+      "components": ["arms", "hands", "torso"],
+      "directions": [],
+      "supported_intents": [],
+      "mapping_status": "review_required",
+      "source": "Eambalam, The Structure of Bharathanatyam",
+      "source_reference": "Section 'Adavu' — Nritta Hasta as a movement component",
+      "notes": "Structural hand/arm component only; it does not establish an action mapping for story gestures or raised hands."
+    },
+    {
+      "movement_name": "Head, neck and eye coordination",
+      "movement_type": "movement_concept",
+      "aliases": [],
+      "components": ["neck", "head", "eyes"],
+      "directions": ["toward_target"],
+      "supported_intents": [],
+      "mapping_status": "review_required",
+      "source": "Kalaprangan Trust, Bharatanatyam Praveshika Purna",
+      "source_reference": "Adavu section — coordinated movement of neck, head and eyes",
+      "notes": "Source-backed structural coordination only. Looking toward a story object is not asserted as a Bharatanatyam movement mapping."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hi-natyaverse.local/schemas/evidence/narrative/1.0.0",
+  "title": "HI-Natya Verse Explicitly Verified Narrative Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "analysis_id", "video_id", "performance_mode", "records", "created_at"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "analysis_id": {"type": "string", "minLength": 1},
+    "video_id": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string", "minLength": 1},
+    "performance_mode": {"$ref": "#/$defs/mode"},
+    "records": {"type": "array", "items": {"$ref": "#/$defs/record"}}
+  },
+  "$defs": {
+    "source": {"type": "object", "additionalProperties": false, "required": ["type", "reference"], "properties": {"type": {"enum": ["curated_annotation", "expert_verification", "trusted_source_annotation"]}, "reference": {"type": "string", "minLength": 1}}},
+    "provenance": {"type": "object", "additionalProperties": false, "required": ["source_reference", "annotator_or_verifier", "method", "verification_confidence"], "properties": {"source_reference": {"type": "string", "minLength": 1}, "annotator_or_verifier": {"type": "string", "minLength": 1}, "method": {"type": "string", "minLength": 1}, "verification_confidence": {"type": "number", "minimum": 0, "maximum": 1}}},
+    "mode": {"type": "object", "additionalProperties": false, "required": ["label", "verification_status", "source", "provenance"], "properties": {"label": {"enum": ["pure_dance", "narrative_dance"]}, "verification_status": {"const": "verified"}, "source": {"$ref": "#/$defs/source"}, "provenance": {"$ref": "#/$defs/provenance"}}},
+    "record": {"type": "object", "additionalProperties": false, "required": ["evidence_id", "analysis_id", "video_id", "statement", "statement_type", "source", "provenance", "span", "verification_status", "verification_method", "production_eligibility"], "properties": {"evidence_id": {"type": "string", "minLength": 1}, "analysis_id": {"type": "string", "minLength": 1}, "video_id": {"type": "string", "minLength": 1}, "statement": {"type": "string", "minLength": 1}, "statement_type": {"enum": ["verified_narrative_event", "verified_performance_event"]}, "source": {"$ref": "#/$defs/source"}, "provenance": {"$ref": "#/$defs/provenance"}, "span": {"type": ["object", "null"], "additionalProperties": false, "required": ["start_time", "end_time"], "properties": {"start_time": {"type": "number", "minimum": 0}, "end_time": {"type": "number", "minimum": 0}}}, "verification_status": {"const": "verified"}, "verification_method": {"const": "human_or_curated_source"}, "production_eligibility": {"type": "object", "additionalProperties": false, "required": ["status"], "properties": {"status": {"const": "eligible"}}}}}
+  }
+}

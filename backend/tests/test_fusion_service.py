@@ -14,7 +14,7 @@ client = TestClient(app)
 VIDEO_ID = "00000000-0000-0000-0000-000000000000"
 
 
-def _mudra_result(events=None, summary_override=None):
+def _mudra_result(events=None, summary_override=None, *, video_id=VIDEO_ID, analysis_id=VIDEO_ID):
     """A plausible stored Mudra modality result."""
     if events is None:
         events = [
@@ -26,7 +26,8 @@ def _mudra_result(events=None, summary_override=None):
         "average_confidence": 0.85,
     }
     return {
-        "analysis_id": VIDEO_ID,
+        "video_id": video_id,
+        "analysis_id": analysis_id,
         "frame_count": 5,
         "mudra_events": events,
         "summary": summary,
@@ -63,7 +64,7 @@ def _mudra_result(events=None, summary_override=None):
     }
 
 
-def _bhava_result(events=None, summary_confidence=0.75):
+def _bhava_result(events=None, summary_confidence=0.75, *, video_id=VIDEO_ID, analysis_id=VIDEO_ID):
     """Build a plausible stored Bhava modality result."""
     if events is None:
         events = [
@@ -72,6 +73,8 @@ def _bhava_result(events=None, summary_confidence=0.75):
         ]
     summary = {"dominant_bhava": "Happy", "average_confidence": summary_confidence}
     return {
+        "video_id": video_id,
+        "analysis_id": analysis_id,
         "event_id": VIDEO_ID,
         "frame_count": 5,
         "bhava_events": events,
@@ -91,7 +94,7 @@ def _bhava_result(events=None, summary_confidence=0.75):
         "evidence": {
             "grounded": [],
             "detected": [
-                {"id": "bhava-dominant", "label": "Happy bhava detected", "category": "detected", "confidence": 0.85}
+                {"id": "bhava-dominant", "label": "Happy facial expression detected", "category": "detected", "confidence": 0.85}
             ],
             "unresolved": [],
             "interpreted": [],
@@ -158,6 +161,116 @@ def test_successful_fusion(monkeypatch):
     assert validated.summary.bhava_event_count == 2
     assert validated.summary.average_mudra_confidence == 0.85
     assert validated.summary.frame_count == 5
+
+
+def test_fusion_preserves_matching_distinct_analysis_id(monkeypatch):
+    analysis_id = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    monkeypatch.setattr(
+        fusion_service,
+        "get_modality_result",
+        lambda _, modality: (
+            _mudra_result(analysis_id=analysis_id)
+            if modality == "mudra"
+            else _bhava_result(analysis_id=analysis_id)
+        ),
+    )
+
+    result = fusion_service.fuse_video(VIDEO_ID)
+    validated = FusionResponse.model_validate(result)
+
+    assert validated.analysis_id == analysis_id
+    assert result["mudra_bhava_alignment"]["analysis_id"] == analysis_id
+    assert all(
+        item["analysis_id"] == analysis_id
+        for item in result["mudra_bhava_alignment"]["alignments"]
+    )
+
+
+def test_fusion_rejects_mismatched_analysis_ids(monkeypatch):
+    monkeypatch.setattr(
+        fusion_service,
+        "get_modality_result",
+        lambda _, modality: (
+            _mudra_result(analysis_id="aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa")
+            if modality == "mudra"
+            else _bhava_result(analysis_id="bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb")
+        ),
+    )
+
+    with pytest.raises(AppError) as excinfo:
+        fusion_service.fuse_video(VIDEO_ID)
+
+    assert excinfo.value.status_code == 409
+    assert excinfo.value.code == "ANALYSIS_ID_MISMATCH"
+
+
+def test_fusion_rejects_mismatched_video_id(monkeypatch):
+    other_video_id = "cccccccc-cccc-4ccc-8ccc-cccccccccccc"
+    monkeypatch.setattr(
+        fusion_service,
+        "get_modality_result",
+        lambda _, modality: (
+            _mudra_result()
+            if modality == "mudra"
+            else _bhava_result(video_id=other_video_id)
+        ),
+    )
+
+    with pytest.raises(AppError) as excinfo:
+        fusion_service.fuse_video(VIDEO_ID)
+
+    assert excinfo.value.status_code == 409
+    assert excinfo.value.code == "VIDEO_ID_MISMATCH"
+
+
+def test_fusion_uses_video_id_for_missing_analysis_ids(monkeypatch):
+    def get_result(_, modality):
+        result = _mudra_result() if modality == "mudra" else _bhava_result()
+        result.pop("analysis_id")
+        return result
+
+    monkeypatch.setattr(fusion_service, "get_modality_result", get_result)
+
+    result = fusion_service.fuse_video(VIDEO_ID)
+
+    assert result["analysis_id"] == VIDEO_ID
+    assert result["mudra_bhava_alignment"]["analysis_id"] == VIDEO_ID
+
+
+def test_fusion_isolates_distinct_analyses_for_the_same_video(monkeypatch):
+    analysis_ids = [
+        "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+        "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+    ]
+    current_analysis = {"id": analysis_ids[0]}
+
+    def get_result(_, modality):
+        analysis_id = current_analysis["id"]
+        return (
+            _mudra_result(
+                events=[{"mudra": analysis_id, "start_time": 0.0, "end_time": 1.0, "confidence": 0.9}],
+                analysis_id=analysis_id,
+            )
+            if modality == "mudra"
+            else _bhava_result(
+                events=[{"bhava": analysis_id, "start_time": 0.0, "end_time": 1.0, "confidence": 0.8}],
+                analysis_id=analysis_id,
+            )
+        )
+
+    monkeypatch.setattr(fusion_service, "get_modality_result", get_result)
+
+    first = fusion_service.fuse_video(VIDEO_ID)
+    current_analysis["id"] = analysis_ids[1]
+    second = fusion_service.fuse_video(VIDEO_ID)
+
+    assert first["video_id"] == second["video_id"] == VIDEO_ID
+    assert first["analysis_id"] == analysis_ids[0]
+    assert second["analysis_id"] == analysis_ids[1]
+    assert first["timeline"][0]["mudra"] == analysis_ids[0]
+    assert second["timeline"][0]["mudra"] == analysis_ids[1]
+    assert first["mudra_bhava_alignment"]["analysis_id"] == analysis_ids[0]
+    assert second["mudra_bhava_alignment"]["analysis_id"] == analysis_ids[1]
 
 
 def test_timestamp_alignment(monkeypatch):
@@ -237,7 +350,7 @@ def test_preserves_bhava_detected_evidence(monkeypatch):
     assert any(item["id"] == "bhava-dominant" for item in evidence["detected"])
     detected = next(item for item in evidence["detected"] if item["id"] == "bhava-dominant")
     assert detected["category"] == "detected"
-    assert detected["label"] == "Happy bhava detected"
+    assert detected["label"] == "Happy facial expression detected"
 
 
 def test_schema_compatibility(monkeypatch):
@@ -255,6 +368,50 @@ def test_schema_compatibility(monkeypatch):
         assert "mudra" in row.model_dump()
         assert "bhava" in row.model_dump()
         assert "mudra_grounded" in row.model_dump()
+
+
+def test_fusion_adds_segment_cultural_evidence_without_bhava_inference(monkeypatch):
+    mudra = _mudra_result(events=[
+        {"mudra": "Pataka", "start_time": 0.0, "end_time": 2.0, "confidence": 0.9, "frame_count": 2}
+    ])
+    mudra["temporal_sequence"] = {
+        "video_id": VIDEO_ID,
+        "analysis_id": VIDEO_ID,
+        "sequence_id": f"{VIDEO_ID}-temporal-sequence",
+        "segments": [{
+            "video_id": VIDEO_ID,
+            "analysis_id": VIDEO_ID,
+            "segment_id": "segment-pataka",
+            "mudra_label": "Pataka",
+            "start_timestamp": 0.0,
+            "end_timestamp": 2.0,
+            "frame_indices": [0, 1],
+            "supporting_evidence_ids": [f"{VIDEO_ID}-frame-0", f"{VIDEO_ID}-frame-1"],
+            "confidence": {"mean": 0.9},
+            "uncertainty_status": "normal",
+        }],
+    }
+    monkeypatch.setattr(
+        fusion_service,
+        "get_modality_result",
+        lambda analysis_id, modality: mudra if modality == "mudra" else _bhava_result(),
+    )
+
+    result = fusion_service.fuse_video(VIDEO_ID)
+
+    cultural = result["cultural_knowledge_evidence"]
+    assert len(cultural) == 1
+    assert cultural[0]["video_id"] == VIDEO_ID
+    assert cultural[0]["analysis_id"] == VIDEO_ID
+    assert cultural[0]["segment_id"] == "segment-pataka"
+    assert cultural[0]["recognition_confidence"] == 0.9
+    assert cultural[0]["verification_status"] == "partially_verified"
+    assert cultural[0]["source_references"] == ["Abhinaya Darpanam (canonical namesake)"]
+    assert cultural[0]["alignment_observation"]["expression_observations"]
+    assert cultural[0]["claim"]["descriptions"]["en"] == "Flag / banner"
+    assert "bhava" not in cultural[0]["claim"]
+    assert "rasa" not in cultural[0]["claim"]
+    assert result["evidence"]["grounded"][0]["id"] == "mudra-Pataka"
 
 
 # ----------------------------------------------------------------------
@@ -344,7 +501,7 @@ def test_fusion_endpoint_returns_validated_schema():
         },
         "evidence": {
             "grounded": [],
-            "detected": [{"id": "bhava-dominant", "label": "Happy bhava detected", "category": "detected", "confidence": 0.85}],
+            "detected": [{"id": "bhava-dominant", "label": "Happy facial expression detected", "category": "detected", "confidence": 0.85}],
             "unresolved": [],
             "interpreted": [],
         },
@@ -363,3 +520,4 @@ def test_fusion_endpoint_returns_validated_schema():
     assert body["timeline"][0]["mudra"] == "Pataka"
     assert body["timeline"][0]["mudra_grounded"] is True
     assert "evidence" in body
+    assert body["cultural_knowledge_evidence"] is None

@@ -12,6 +12,7 @@ This service mirrors the established Mudra temporal-pipeline pattern:
 """
 from __future__ import annotations
 
+import logging
 from collections import Counter
 from pathlib import Path
 
@@ -20,6 +21,8 @@ from app.models.model_manager import model_manager
 from app.services.knowledge_service import build_evidence
 from app.services.mudra_service import _load_frame_manifest
 from app.services.result_service import save_modality_result, save_result
+
+logger = logging.getLogger(__name__)
 
 
 def group_bhava_events(predictions: list[dict]) -> list[dict]:
@@ -56,9 +59,12 @@ def group_bhava_events(predictions: list[dict]) -> list[dict]:
 def classify_video_bhava(video_id: str) -> dict:
     """Run the existing Bhava image classifier over manifest-listed JPEG frames."""
     frame_dir, manifest = _load_frame_manifest(video_id)
+    logger.info("Bhava inference starting: video_id=%s frames_dir=%s frames_discovered=%s", video_id, frame_dir, len(manifest["frames"]))
     try:
         model = model_manager.get("bhava")
+        logger.info("Bhava model loaded: video_id=%s classes=%s", video_id, len(getattr(model, "class_names", None) or []))
     except Exception as exc:
+        logger.error("Bhava model unavailable: video_id=%s error=%s", video_id, exc)
         raise AppError("Bhava model is unavailable.", 503, "BHAVA_MODEL_UNAVAILABLE") from exc
 
     try:
@@ -147,4 +153,5 @@ def classify_video_bhava(video_id: str) -> dict:
     response["evidence"] = build_evidence(response)
     save_result(response)
     save_modality_result(video_id, "bhava", response)
+    logger.info("Bhava inference completed: video_id=%s frames_analyzed=%s dominant=%s", video_id, len(predictions), dominant)
     return response

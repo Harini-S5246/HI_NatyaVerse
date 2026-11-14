@@ -1,5 +1,5 @@
 """Typed response schemas for multimodal fusion output."""
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class FusionTimelineEntry(BaseModel):
@@ -8,6 +8,11 @@ class FusionTimelineEntry(BaseModel):
     mudra: str | None = None
     mudra_confidence: float | None = None
     mudra_grounded: bool = False
+    mudra_knowledge_status: str | None = None
+    mudra_verification_status: str | None = None
+    mudra_claim_id: str | None = None
+    mudra_source_references: list[str] = Field(default_factory=list)
+    mudra_uncertainty_notes: list[str] = Field(default_factory=list)
     bhava: str | None = None
     bhava_confidence: float | None = None
 
@@ -28,3 +33,5 @@ class FusionResponse(BaseModel):
     timeline: list[FusionTimelineEntry]
     summary: FusionSummary
     evidence: dict | None = None
+    mudra_bhava_alignment: dict | None = None
+    cultural_knowledge_evidence: list[dict] | None = None

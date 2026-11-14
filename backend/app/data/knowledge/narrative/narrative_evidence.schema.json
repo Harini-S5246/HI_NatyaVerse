@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hi-natyaverse.local/schemas/narrative-evidence/1.1.0",
+  "title": "HI-Natya Verse Narrative Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "story_id", "story_title", "source", "source_type", "source_reference", "version", "production_eligible", "performance_mode", "events"],
+  "properties": {
+    "schema_version": {"const": "1.1.0"},
+    "story_id": {"type": "string", "minLength": 1},
+    "story_title": {"type": "string", "minLength": 1},
+    "source": {"type": "string", "minLength": 1},
+    "source_type": {"type": "string", "enum": ["expert_annotation", "primary_text_annotation", "scholarly_annotation", "synthetic_test_fixture"]},
+    "source_reference": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "minLength": 1},
+    "production_eligible": {"type": "boolean"},
+    "performance_mode": {"$ref": "#/$defs/performance_mode"},
+    "events": {"type": "array", "items": {"$ref": "#/$defs/event"}}
+  },
+  "$defs": {
+    "performance_mode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "verification_status", "source", "source_reference", "confidence"],
+      "properties": {
+        "label": {"type": "string", "enum": ["pure_dance", "narrative_dance", "unknown"]},
+        "verification_status": {"type": "string", "enum": ["verified", "unknown"]},
+        "source": {"type": "string", "minLength": 1},
+        "source_reference": {"type": "string", "minLength": 1},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "allOf": [
+        {"if": {"properties": {"label": {"const": "unknown"}}}, "then": {"properties": {"verification_status": {"const": "unknown"}}}},
+        {"if": {"properties": {"label": {"enum": ["pure_dance", "narrative_dance"]}}}, "then": {"properties": {"verification_status": {"const": "verified"}}}}
+      ]
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "verification_status"],
+      "properties": {
+        "label": {"type": ["string", "null"]},
+        "verification_status": {"type": "string", "enum": ["verified", "unverified", "unknown"]}
+      },
+      "allOf": [{"if": {"properties": {"verification_status": {"const": "verified"}}}, "then": {"properties": {"label": {"type": "string", "minLength": 1}}}}]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "source_reference", "confidence", "notes"],
+      "properties": {
+        "source": {"type": "string", "minLength": 1},
+        "source_reference": {"type": "string", "minLength": 1},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        "notes": {"type": "string", "minLength": 1}
+      }
+    },
+    "supported_relation": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["label", "verification_status", "evidence"],
+      "properties": {
+        "label": {"type": "string", "minLength": 1},
+        "verification_status": {"type": "string", "enum": ["verified", "unverified"]},
+        "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}}
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["event_id", "start_time", "end_time", "subject", "action", "object", "target", "location", "state", "relationships", "temporal_relation", "causal_relation", "evidence"],
+      "properties": {
+        "event_id": {"type": "string", "minLength": 1},
+        "start_time": {"type": "number", "minimum": 0},
+        "end_time": {"type": "number", "minimum": 0},
+        "subject": {"$ref": "#/$defs/claim"},
+        "action": {"$ref": "#/$defs/claim"},
+        "object": {"$ref": "#/$defs/claim"},
+        "target": {"$ref": "#/$defs/claim"},
+        "location": {"$ref": "#/$defs/claim"},
+        "state": {"$ref": "#/$defs/claim"},
+        "relationships": {"type": "array", "items": {"$ref": "#/$defs/supported_relation"}},
+        "temporal_relation": {"$ref": "#/$defs/supported_relation"},
+        "causal_relation": {"$ref": "#/$defs/supported_relation"},
+        "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}}
+      }
+    }
+  }
+}

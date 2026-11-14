@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 270" role="img" aria-labelledby="title description">
+  <title id="title">Bhramari illustrative full-body turning concept</title>
+  <desc id="description">A complete stylized dancer figure turning with both arms extended and both legs visible.</desc>
+  <rect width="360" height="270" rx="12" fill="#fbf8f0"/>
+  <g fill="none" stroke="#794d42" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="180" cy="38" r="20" fill="#e8b28e" stroke-width="5"/>
+    <path d="M180 59v69M180 76 122 67 91 43M180 76l58-9 31-24M180 128l-38 51-18 47M180 128l40 38 9 60"/>
+    <path d="m125 141-20 13m112-20 19 13"/>
+  </g>
+  <path d="M153 65h54l-7 71-20 18-21-18z" fill="#b65c4d" opacity=".8"/>
+  <path d="m168 71 24 0m-10 51 8 0" stroke="#fbf8f0" stroke-width="4" stroke-linecap="round"/>
+  <text x="180" y="258" text-anchor="middle" fill="#794d42" font-family="sans-serif" font-size="14">Illustrative turning concept · not a pose prescription</text>
+</svg>

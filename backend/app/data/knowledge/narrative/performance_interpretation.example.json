@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "analysis_id": "synthetic-analysis-001",
+  "video_id": "synthetic-analysis-001",
+  "source_type": "synthetic_test_fixture",
+  "production_eligible": false,
+  "performance_mode": {
+    "label": "pure_dance",
+    "verification_status": "verified",
+    "source": "Test author",
+    "source_reference": "synthetic fixture performance-mode annotation",
+    "confidence": 1.0
+  },
+  "interpretation_status": "available",
+  "summary": "Verified performance mode: pure dance.",
+  "events": [
+    {
+      "event_id": "performance-mode",
+      "start_time": null,
+      "end_time": null,
+      "type": "verified_performance_event",
+      "statement": "Performance mode is verified as pure dance.",
+      "evidence": [{"source": "Test author", "source_reference": "synthetic fixture performance-mode annotation", "confidence": 1.0}]
+    }
+  ],
+  "limitations": ["Synthetic fixture only; it cannot be used as production interpretation evidence.", "No narrative events are included."]
+}

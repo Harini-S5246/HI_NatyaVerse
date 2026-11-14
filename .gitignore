@@ -18,3 +18,31 @@ backend/results/*
 # Frontend output
 frontend/node_modules/
 frontend/dist/
+
+# Bharatanatyam training dataset
+Natya_dataset/
+backend/frames/
+backend/outputs/
+backend/.tmp/
+backend/tmp/
+tools/ffmpeg-9.0.1-essentials_build/
+frontend/tsconfig.app.tsbuildinfo
+avatar_lab/
+tmp_blender_debug/
+tmp_character_test_form/
+tmp_reference_selection/
+tmp_story_3d_render/
+
+# Local Blender installation and downloaded tools
+tools/blender-3.6.5-windows-x64/
+tools/blender-3.6.5-windows-x64.zip
+
+# Local debugging and temporary files
+backend/pytest_story_route_debug.txt
+backend/tmp_*/
+backend/tmp_test/
+backend/tmp_test_api/
+frontend/capture-create-dance.png
+
+# Local test assets and Blender outputs
+backend/assets/

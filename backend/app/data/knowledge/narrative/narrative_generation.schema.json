@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hi-natyaverse.local/schemas/narrative-generation/1.0.0",
+  "title": "HI-Natya Verse Evidence-Grounded Narrative Generation Response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "analysis_id", "video_id", "mode", "status", "title", "narrative", "evidence_coverage", "used_event_ids", "limitations", "provider", "model"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "analysis_id": {"type": "string", "minLength": 1},
+    "video_id": {"type": "string", "minLength": 1},
+    "mode": {"type": "string", "enum": ["pure_dance", "narrative_dance", "unknown"]},
+    "status": {"type": "string", "enum": ["generated", "unavailable", "blocked"]},
+    "title": {"type": ["string", "null"]},
+    "narrative": {"type": ["string", "null"]},
+    "evidence_coverage": {"type": "number", "minimum": 0, "maximum": 1},
+    "used_event_ids": {"type": "array", "items": {"type": "string"}},
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "provider": {"type": "string", "enum": ["gemini", "ollama", "openai"]},
+    "model": {"type": "string", "minLength": 1},
+    "message": {"type": ["string", "null"]}
+  }
+}

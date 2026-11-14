@@ -12,7 +12,7 @@ def result_path(result_id: str) -> Path:
 def save_result(result: dict) -> None:
     save_json(result_path(result["analysis_id"]), result)
 
-MODALITIES = {"mudra", "bhava", "fusion", "story"}
+MODALITIES = {"mudra", "bhava", "fusion", "story", "story_generation", "semantic_events", "pose_events", "performance_interpretation", "audio_evidence", "narrative_evidence", "narrative_evidence_review"}
 
 
 def modality_result_path(analysis_id: str, modality: str) -> Path:
